@@ -15,7 +15,10 @@
 ```javascript
 // global.d.ts
 /// <reference types="vite-plugin-moon-svg/types" />
-
+或者在tsconfig.json文件添加
+ "types": [
+      "vite-plugin-moon-svg/types",
+],
 
 // vite.config.ts
 

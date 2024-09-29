@@ -27,6 +27,14 @@
       "types": "./dist/types.d.ts"
     }
   },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",

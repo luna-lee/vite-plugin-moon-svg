@@ -3,6 +3,7 @@
 - svg文件可通过import直接作为组件使用
 - import的svg文件，除了默认返回一个vue组件，还返回当前svg的文本内容context
 - 可通过virtual:moon-svg-get模块，依据svg名获取svg对应的组件。或获取全部svg对应的组件
+- virtual:moon-svg-get中 依据svg名获取svg对应的组件，为按需引入，不会导致页面一次加载全部的svg文件。
 
 # 参数
 

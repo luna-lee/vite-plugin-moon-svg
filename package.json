@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "pnpm --filter 'vite-plugin-moon-svg' run build",
-    "test": "vitest"
+    "build": "npm run copy-md && pnpm --filter 'vite-plugin-moon-svg' run build",
+    "test": "vitest",
+    "copy-md": "cp README.md  packages/core"
   },
   "keywords": [],
   "author": "",

@@ -2,20 +2,26 @@
 
 # vite-plugin-moon-svg
 
-- svg文件可通过import直接作为组件使用
-- import的svg文件，除了默认返回一个vue组件，还返回当前svg的文本内容context
-- 可通过virtual:moon-svg-get模块，依据svg名获取svg对应的组件。或获取全部svg对应的组件
-- virtual:moon-svg-get中 依据svg名获取svg对应的组件，为按需引入，不会导致页面一次加载全部的svg文件。
+## 功能
 
-## 参数
+1. svg文件可通过import直接作为组件使用
+2. import的svg文件，除了默认返回一个vue组件，还返回当前svg的文本内容context
+3. 可通过virtual:moon-svg-get模块，依据svg名获取svg对应的组件。或获取全部svg对应的组件
+4. virtual:moon-svg-get中 依据svg名获取svg对应的组件，为按需引入，不会导致页面一次加载全部的svg文件。
 
-| 名称      | 说明                                                         | 参数 |
-| --------- | ------------------------------------------------------------ | ---- |
-| dir       | svg文件目录，相对于项目更目录。 使用virtual:moon-svg-get模块时必须指定dir目录。<br />子目录中的文件，svg组件名为 ：{子目录名}-{文件名} | -    |
-| transfrom | 对svg文件进行操作，如替换修改属性等。                        | -    |
-| ctxable   | import文件时，是否同时返回svg的文本内容                      | -    |
+## 安装
 
-## TS类型支持
+ 
+
+```javascript
+npm i vite-plugin-moon-svg -S
+```
+
+
+
+## **配置**
+
+### TS类型支持
 
 #### 在公共的d.ts文件中添加下面的代码
 
@@ -63,7 +69,17 @@ declare module 'virtual:moon-svg-get' {
 
 
 
-## 配置 vite.config.ts文件
+## vite.config.ts文件
+
+### 参数
+
+| 名称      | 说明                                                         | 参数 |
+| --------- | ------------------------------------------------------------ | ---- |
+| dir       | svg文件目录，相对于项目更目录。 使用virtual:moon-svg-get模块时必须指定dir目录。<br />子目录中的文件，svg组件名为 ：{子目录名}-{文件名} | -    |
+| transfrom | 对svg文件进行操作，如替换修改属性等。                        | -    |
+| ctxable   | import文件时，是否同时返回svg的文本内容                      | -    |
+
+## 
 
 ```typescript
 //添加插件
@@ -86,7 +102,7 @@ plugins:[
 
 ## 组件使用
 
-#### 直接引入svg文件使用
+### 直接引入svg文件使用
 
 ```vue
 <templaget>
@@ -101,7 +117,7 @@ plugins:[
 </script>
 ```
 
-#### 通过 virtual:moon-svg-get模块，依据文件名按需动态获取svg文件
+### 通过 virtual:moon-svg-get模块，依据文件名按需动态获取svg文件
 
  
 
@@ -133,5 +149,4 @@ getCustomSvg({ all: true }).then((arr) => {
 });
 </script>
 ```
-
 

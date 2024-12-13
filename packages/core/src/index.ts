@@ -10,7 +10,7 @@ const absolutePath = (...args: any[]) => path.resolve(process.cwd(), ...args);
  *
  * @export
  * @param {{ transfrom?: (svg: string, filename: string, filepath: string) => string; dir?: string }} [param0={}]
- * @param {(svg: string, filename: string, filepath: string) => string} param0.transfrom 可对svg文本内容进行修改
+ * @param {(svg: string, filepath: string) => string} param0.transfrom 可对svg文本内容进行修改
  * @param {string} param0.dir svg目录
  */
 export default function MoonSvgPlugin({
@@ -18,7 +18,7 @@ export default function MoonSvgPlugin({
   dir,
   ctxable,
 }: {
-  transfrom?: (svg: string, filename: string, filepath: string) => string;
+  transfrom?: (svg: string, filepath: string) => string;
   dir?: string;
   ctxable?: boolean;
 } = {}) {
@@ -52,8 +52,7 @@ export default function MoonSvgPlugin({
       // 若没有dir，这直接为文件名
       if (!componentName) componentName = filename;
 
-      if (typeof transfrom == "function")
-        svg = transfrom(svg, filename, componentName);
+      if (typeof transfrom == "function") svg = transfrom(svg, id);
       const str = `
             <template> 
               ${svg} 
@@ -78,7 +77,7 @@ export default function MoonSvgPlugin({
             export default markRaw({ name: '${componentName}', render })`;
       if (ctxable) {
         code += `
-        export  const context= '${svg}';
+        export  const context= \`${svg}\`;
         `;
       }
       return {

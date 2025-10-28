@@ -13,16 +13,19 @@ const absolutePath = (...args: any[]) => path.resolve(process.cwd(), ...args);
  * @param {(svg: string, filepath: string) => string} param0.transfrom 可对svg文本内容进行修改
  * @param {string} param0.dir svg目录
  */
-export default function MoonSvgPlugin({
-  transfrom,
-  dir,
-  ctxable,
-}: {
-  transfrom?: (svg: string, filepath: string) => string;
-  dir?: string;
-  ctxable?: boolean;
-} = {}) {
-  const filter = createFilter(/\.svg$/, undefined);
+export default function MoonSvgPlugin(
+  {
+    transfrom,
+    dir,
+    ctxable,
+  }: {
+    transfrom?: (svg: string, filepath: string) => string;
+    dir: string;
+    ctxable?: boolean;
+  } = { dir: "src/assets/svg" }
+) {
+  const normalizedDir = dir.replace(/\/$/, "");
+  const filter = createFilter(`${normalizedDir}/**/*.svg`);
 
   return {
     name: "vite-plugin-moon-svg",
